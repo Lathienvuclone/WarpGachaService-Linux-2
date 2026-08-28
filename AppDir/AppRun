@@ -1,0 +1,25 @@
+cat << 'EOF' > AppDir/AppRun
+#!/bin/bash
+HERE="$(dirname "$(readlink -f "${0}")")"
+
+DAEMON_SRC="$HERE/usr/bin/daemon/Daemon"
+DAEMON_RUN="/tmp/warp-gacha-daemon"
+
+cp -f "$DAEMON_SRC" "$DAEMON_RUN"
+chmod 755 "$DAEMON_RUN"
+chmod +x "$HERE/usr/bin/ui/UI" 2>/dev/null
+
+# Launch daemon using non-interactive pkexec elevation
+pkexec --user root "$DAEMON_RUN" >/dev/null 2>&1 &
+
+MAX_TRIES=20
+COUNT=0
+while [ ! -S /run/warp-gacha.sock ] && [ $COUNT -lt $MAX_TRIES ]; do
+    sleep 0.3
+    COUNT=$((COUNT + 1))
+done
+
+exec "$HERE/usr/bin/ui/UI" "$@"
+EOF
+
+chmod +x AppDir/AppRun
