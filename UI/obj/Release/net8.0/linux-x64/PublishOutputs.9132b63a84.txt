@@ -1,0 +1,2 @@
+/home/lenovo/Desktop/WarpGachaService/AppDir/usr/bin/ui/UI.pdb
+/home/lenovo/Desktop/WarpGachaService/AppDir/usr/bin/ui/UI

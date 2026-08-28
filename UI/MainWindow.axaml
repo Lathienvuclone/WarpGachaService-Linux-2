@@ -1,0 +1,11 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="WarpGachaUI.MainWindow"
+        Title="Cloudflare WARP Gacha" Width="400" Height="300">
+    <StackPanel Margin="20" Spacing="15">
+        <TextBlock Text="Target Region (e.g. SIN, HKG):" FontWeight="Bold"/>
+        <TextBox x:Name="TargetInput" Text="SIN"/>
+        <Button Content="Start Rotation" Click="OnStartClick" HorizontalAlignment="Stretch"/>
+        <TextBlock x:Name="StatusLabel" Text="Status: Idle" FontSize="14"/>
+    </StackPanel>
+</Window>
